@@ -43,7 +43,7 @@ sequelize.sync();
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.engine('handlebars', exphbs.engine());
+app.engine('handlebars', exphbs.engine({ defaultLayout: false }));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -101,6 +101,7 @@ app.get('/annotations', async (req, res) => {
 });
 
 // Rota para criar anotação
+// Rota para criar anotação
 app.get('/create', (req, res) => {
   res.render('create');
 });
@@ -116,6 +117,15 @@ app.post('/create', async (req, res) => {
   }
 });
 
+app.get('/annotations', async (req, res) => {
+  try {
+    const annotations = await Annotation.findAll();
+    res.render('annotations', { annotations });
+  } catch (error) {
+    res.status(500).send('Erro ao carregar anotações');
+  }
+});
+// Rota para editar anotação
 // Rota para editar anotação
 app.get('/edit/:id', async (req, res) => {
   const annotation = await Annotation.findByPk(req.params.id);
@@ -136,6 +146,8 @@ app.post('/edit/:id', async (req, res) => {
   }
 });
 
+
+// Rota para excluir anotação
 // Rota para excluir anotação
 app.post('/delete/:id', async (req, res) => {
   try {
@@ -146,6 +158,7 @@ app.post('/delete/:id', async (req, res) => {
     res.status(500).send('Erro ao excluir anotação');
   }
 });
+
 
 app.listen(3000, () => {
   console.log('Servidor em execução...');
