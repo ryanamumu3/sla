@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anotações</title>
+</head>
+<body>
+  <h1>Lista de Anotações</h1>
+  <ul>
+    {{#each annotations}}
+      <li>
+        <strong>{{this.title}}</strong>: {{this.content}} 
+        <a href="/edit/{{this.id}}">Editar</a>
+        <form action="/delete/{{this.id}}" method="POST" style="display:inline;">
+          <button type="submit">Excluir</button>
+        </form>
+      </li>
+    {{/each}}
+  </ul>
+  <a href="/create">Criar Nova Anotação</a>
+</body>
+</html>

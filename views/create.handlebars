@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Anotação</title>
+</head>
+<body>
+  <h1>Criar Anotação</h1>
+  <form action="/create" method="POST">
+    <label for="title">Título:</label>
+    <input type="text" name="title" id="title" required>
+    <br>
+    <label for="content">Conteúdo:</label>
+    <textarea name="content" id="content" required></textarea>
+    <br>
+    <button type="submit">Criar</button>
+  </form>
+  <a href="/annotations">Voltar</a>
+</body>
+</html>
